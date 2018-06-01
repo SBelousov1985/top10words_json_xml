@@ -1,7 +1,7 @@
 import os
 from chardet.universaldetector import UniversalDetector
 import json
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ElementTree
 
 
 def get_files(ext):
@@ -89,7 +89,7 @@ encodings = get_encoding_from_files(get_files("xml"))
 for file_name, result_encoding in encodings.items():
     with open(file_name, encoding=result_encoding["encoding"]) as f:
         xml = f.read()
-        data = etree.XML(xml)
+        data = ElementTree.XML(xml)
         news_list = []
         for item in data.findall("channel/item"):
             news_list.append(item.find("description").text)
